@@ -1,0 +1,191 @@
+/* public/style.css */
+/* WhatsApp-like full-screen styling and responsive layout */
+
+/* reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+
+:root{
+  --whatsapp-green: #075E54;
+  --bg: #ECE5DD; /* WhatsApp background */
+  --chat-bg: #EDEDED;
+  --bubble-me: #dcf8c6;
+  --bubble-other: #ffffff;
+  --muted: #8b8b8b;
+  --max-chat-width: 720px;
+}
+
+body {
+  background: var(--bg);
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  height: 100vh;
+}
+
+/* top bar */
+.topbar {
+  background: var(--whatsapp-green);
+  color: #fff;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.topbar .brand { font-weight: 600; font-size: 18px; }
+.topbar .subtitle { font-size: 12px; opacity: 0.9; color: #e7f7f2; }
+
+/* main area stretches full height below topbar */
+.main {
+  height: calc(100vh - 56px);
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+
+/* join screen */
+.join-screen {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.join-card {
+  background: white;
+  width: 380px;
+  padding: 22px;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  text-align: center;
+}
+.join-card h1 { margin-bottom: 12px; font-size: 20px; }
+.join-card input {
+  width: 100%;
+  padding: 12px 14px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+.join-actions { margin-top: 8px; display:flex; justify-content:center; gap:10px; }
+.hint { margin-top: 8px; color: var(--muted); font-size: 13px; }
+
+/* chat screen layout */
+.chat-screen {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  padding: 16px;
+}
+
+/* wrapper centers chat column and limits width */
+.chat-wrapper {
+  width: 100%;
+  max-width: var(--max-chat-width);
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  height: 100%;
+}
+
+/* messages area */
+.messages-area {
+  flex: 1;
+  display: flex;
+  padding: 18px;
+  background: transparent;
+  align-items: flex-end;
+}
+.messages {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  background: #efeae2;
+  border-radius: 8px;
+  padding: 18px;
+  height: calc(100vh - 220px);
+  overflow-y: auto;
+  display:flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* message bubbles */
+.msg {
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 12px;
+  max-width: 70%;
+  word-wrap: break-word;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  font-size: 15px;
+  line-height: 1.4;
+  position: relative;
+}
+
+.msg.me {
+  background: var(--bubble-me);
+  margin-left: auto;
+  border-bottom-right-radius: 4px;
+}
+
+.msg.other {
+  background: var(--bubble-other);
+  margin-right: auto;
+  border-bottom-left-radius: 4px;
+  border: 1px solid #e6e6e6;
+}
+
+/* small meta: name/time */
+.meta { display:block; font-size: 12px; color: var(--muted); margin-top: 6px; }
+
+/* system message */
+.system {
+  align-self: center;
+  font-size: 13px;
+  color: #666;
+  background: transparent;
+  padding: 6px 10px;
+}
+
+/* composer area (bottom) */
+.composer {
+  display: flex;
+  gap: 10px;
+  padding: 14px 18px;
+  align-items: center;
+  background: transparent;
+}
+.composer input[type="text"],
+.composer input[type="search"],
+#messageInput {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 24px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+  outline: none;
+  background: #fff;
+}
+.btn {
+  border: none;
+  padding: 10px 14px;
+  border-radius: 14px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.btn.primary { background: var(--whatsapp-green); color: #fff; }
+.btn.send { background: #25D366; color: #fff; }
+.btn.leave { background: #b00020; color: #fff; }
+
+/* hidden helper */
+.hidden { display: none; }
+
+/* responsive tweaks */
+@media (max-width: 640px) {
+  .join-card { width: 92%; padding: 16px; }
+  :root { --max-chat-width: 100vw; }
+  .messages { height: calc(100vh - 200px); padding: 14px; }
+  .topbar { padding: 12px; }
+}

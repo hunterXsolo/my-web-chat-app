@@ -1,0 +1,61 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WhatsApp-style Chat</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="/socket.io/socket.io.js" defer></script>
+  <script src="client.js" defer></script>
+</head>
+<body>
+  <div class="app">
+
+    <!-- top bar (full width) -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <div class="brand">Encrypted Chat</div>
+        <div class="subtitle">WhatsApp-style UI</div>
+      </div>
+      <div class="topbar-right" id="topInfo"></div>
+    </header>
+
+    <!-- main area -->
+    <main class="main">
+
+      <!-- join screen -->
+      <section class="join-screen" id="joinScreen">
+        <div class="join-card">
+          <h1>Join a room</h1>
+          <input id="name" placeholder="Your name" autocomplete="off" />
+          <input id="room" placeholder="Room name (acts as key)" autocomplete="off" />
+          <div class="join-actions">
+            <button id="joinBtn" class="btn primary">Join</button>
+          </div>
+          <p class="hint">Tip: use the same room name for all participants (used as encryption key)</p>
+        </div>
+      </section>
+
+      <!-- chat screen -->
+      <section class="chat-screen hidden" id="chatScreen">
+        <div class="chat-wrapper">
+
+          <!-- messages area (centered column) -->
+          <div class="messages-area">
+            <div id="messages" class="messages"></div>
+          </div>
+
+          <!-- input area -->
+          <div class="composer">
+            <input id="messageInput" placeholder="Type a message" autocomplete="off" />
+            <button id="sendBtn" class="btn send">Send</button>
+            <button id="leaveBtn" class="btn leave">Leave</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</body>
+</html>
